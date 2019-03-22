@@ -1,0 +1,79 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Фрейм интрактиной карты YMaps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap, 
+            myPlacemark;
+
+        function init(){ 
+		
+			//alert (location.search.slice(1, location.search.length));
+		
+			ymCoord = location.search.slice(1, location.search.length);
+			coord = ymCoord.split("|");            
+
+			ymaps.geoXml.load('http://maps.yandex.ua/export/usermaps/T6x9bHsrOY63iaL6dhd9ydG6uAL0tuwP/').then(function (res) {
+			myMap.geoObjects.add(res.geoObjects);
+			if (res.mapState) {
+				//res.mapState.applyToMap(myMap);
+				}
+			});
+			
+			myMap = new ymaps.Map("map", {
+                //center: [33.538815, 44.614317],
+				//zoom: 7,
+				center: [coord[1], coord[0]],
+                zoom: coord[2],
+				type: 'yandex#hybrid',
+				controls: ['zoomControl', 'typeSelector',]
+            }); 
+			
+			
+			
+			/*
+			myPlacemark = new ymaps.Placemark([55.76, 37.64], {
+                hintContent: 'Москва!',
+                balloonContent: 'Столица России'
+            });
+            
+            myMap.geoObjects.add(myPlacemark);
+			*/
+			
+        }
+		
+		//alert( fromGlobalPixels([33.538815, 44.614317], 7) );
+    </script>
+</head>
+
+<body style="padding:0px; margin:0px;">
+    <div id="map" style="width: 100%; height: 100%"></div>
+</body>
+
+</html>
+
+
+
+
+<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (начало) 
+<div id="ymaps-map-id_59685898" style="width: auto; height: 445px;"></div>
+<script type="text/javascript">function fid_59685898(ymaps) {
+var objects = [];
+var events = {};
+try{}catch(e){alert(e);};
+var map; 
+objects["map1"] = map = new ymaps.Map("ymaps-map-id_59685898", {
+center: [33.541074,44.614850],  
+zoom: 14,
+type: "yandex#hybrid",
+behaviors:['scrollZoom','drag','dblClickZoom']});
+map.controls.add("typeSelector",{"top":4.5,"right":1.5}).add("zoomControl",{"top":172.5,"left":1.5});};</script>
+<script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU&onload=fid_59685898"></script> 
+-->
+
+
+
+
+

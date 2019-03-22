@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang='ru-RU'>
+<head>
+<meta charset="win-1251">
+<title>ChircCat.DescrLoader</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<style></style>
+</head>
+<body style="font-family:sans-serif;">
+	
+	<div id='descr' style='display:none;'></div>
+	
+	<div id='load' style='text-align:center; vertical-align: middle; width:100%; height:100%;'>
+	<img src='icons/39.GIF' style='padding-top:100px;'><br><br>
+   Идёт загрузка описания храма.<br>
+   Пожалуйста подождите...
+   </div>
+   
+   <script type="text/javascript">
+   
+   $(document).ready(function(){
+   
+				$.get('get-descr.php', { page: location.search.slice(1, location.search.length) }, function(data){ 
+					//alert(data);
+					$('#descr').html(data);
+					$('#load').hide();
+					$('#descr').fadeIn(500);
+				});   
+   });
+   
+   </script>
+</body>
+</html>
